@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Recordes de Pista · Raceville Speed Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a3d2d;
+    --green-dark: #122a1f;
+    --green-deep: #0c1d15;
+    --cream: #faeeeb;
+    --cream-2: #f3e3df;
+    --white: #ffffff;
+    --black: #0a0a0a;
+    --gold: #c9a55a;
+    --gold-2: #e6c98a;
+    --shadow: 0 12px 40px -16px rgba(10, 25, 18, 0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--cream);
+    color: var(--green-deep);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--green); color: var(--cream); }
+
+  /* ============ HEADER / BANNER ============ */
+  .banner {
+    position: relative;
+    background: var(--green);
+    color: var(--cream);
+    padding: 28px 48px 0;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(250, 238, 235, 0.08);
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 5;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(250, 238, 235, 0.12);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    min-width: 160px;
+  }
+
+  .brand-logo {
+    width: 168px;
+    height: 60px;
+    object-fit: contain;
+    object-position: left center;
+    display: block;
+    filter: brightness(1.15) contrast(1.08);
+  }
+
+  .topnav {
+    display: flex;
+    gap: 36px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .topnav a {
+    color: rgba(250, 238, 235, 0.65);
+    text-decoration: none;
+    transition: color .2s;
+    position: relative;
+    padding: 4px 0;
+  }
+  .topnav a:hover { color: var(--cream); }
+  .topnav a.active { color: var(--cream); }
+  .topnav a.active::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 2px;
+    background: var(--gold);
+  }
+
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 238, 235, 0.7);
+    border: 1px solid rgba(250, 238, 235, 0.25);
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  .meta-pill .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201, 165, 90, 0.18);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(201, 165, 90, 0.18); }
+    50% { box-shadow: 0 0 0 6px rgba(201, 165, 90, 0.05); }
+  }
+
+  /* HERO content */
+  .banner-inner {
+    position: relative;
+    padding: 64px 0 100px;
+    z-index: 5;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .banner-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .banner-eyebrow::before {
+    content: '';
+    width: 36px; height: 1px;
+    background: var(--gold);
+  }
+  .banner h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 11vw, 168px);
+    line-height: 0.86;
+    letter-spacing: 0.005em;
+    color: var(--cream);
+    margin-bottom: 28px;
+  }
+  .banner h1 .accent {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .banner-sub {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px 48px;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .banner-circuit {
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: rgba(250, 238, 235, 0.85);
+    max-width: 480px;
+    line-height: 1.5;
+  }
+  .banner-circuit strong {
+    color: var(--cream);
+    font-weight: 600;
+    display: block;
+    font-size: 16px;
+    margin-bottom: 6px;
+    letter-spacing: 0.06em;
+  }
+
+  .banner-stats {
+    display: flex;
+    gap: 40px;
+  }
+  .stat {
+    text-align: right;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+  }
+  .stat-num small {
+    font-size: 18px;
+    color: var(--gold);
+  }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250, 238, 235, 0.55);
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* speed lines decoration */
+  .speed-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .speed-lines .line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(250, 238, 235, 0.12) 30%, rgba(250, 238, 235, 0.18) 70%, transparent);
+    width: 100%;
+    filter: blur(0.5px);
+    animation: dash 6s linear infinite;
+  }
+  .speed-lines .line:nth-child(1) { top: 12%; animation-delay: 0s; }
+  .speed-lines .line:nth-child(2) { top: 28%; animation-delay: -1s; opacity: 0.6; }
+  .speed-lines .line:nth-child(3) { top: 47%; animation-delay: -3s; }
+  .speed-lines .line:nth-child(4) { top: 64%; animation-delay: -2s; opacity: 0.5; }
+  .speed-lines .line:nth-child(5) { top: 82%; animation-delay: -4s; }
+  .speed-lines .line:nth-child(6) { top: 92%; animation-delay: -1.5s; opacity: 0.4; }
+  @keyframes dash {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(250, 238, 235, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(250, 238, 235, 0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+
+  .checker-strip {
+    height: 8px;
+    background-image:
+      linear-gradient(45deg, var(--cream) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--cream) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--cream) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--cream) 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+    background-color: var(--green-deep);
+  }
+
+  /* ============ MAIN ============ */
+  .main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 56px 48px 80px;
+  }
+
+  /* ============ FILTER BAR ============ */
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 20px 24px;
+    background: var(--white);
+    border: 1px solid rgba(26, 61, 45, 0.08);
+    border-radius: 4px;
+    margin-bottom: 36px;
+    box-shadow: 0 2px 12px -8px rgba(26, 61, 45, 0.15);
+  }
+
+  .filter-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .filter-label::before {
+    content: '';
+    width: 18px; height: 2px;
+    background: var(--green);
+  }
+
+  .filter-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    border: 1px solid rgba(26, 61, 45, 0.18);
+    background: transparent;
+    color: var(--green);
+    padding: 9px 18px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .filter-btn .count {
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(26, 61, 45, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    letter-spacing: 0;
+  }
+  .filter-btn:hover {
+    border-color: var(--green);
+    background: rgba(26, 61, 45, 0.04);
+  }
+  .filter-btn.active {
+    background: var(--green);
+    color: var(--cream);
+    border-color: var(--green);
+  }
+  .filter-btn.active .count {
+    background: rgba(250, 238, 235, 0.16);
+    color: var(--cream);
+  }
+
+  .sort-info {
+    font-size: 11px;
+    color: rgba(26, 61, 45, 0.55);
+    letter-spacing: 0.04em;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sort-info svg { width: 14px; height: 14px; }
+
+  /* ============ TABLE HEADER ============ */
+  .col-headers {
+    display: grid;
+    grid-template-columns: 64px 130px 1fr 200px 150px 130px;
+    gap: 24px;
+    padding: 0 28px 14px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(26, 61, 45, 0.45);
+    font-family: 'JetBrains Mono', monospace;
+    border-bottom: 1px solid rgba(26, 61, 45, 0.12);
+    margin-bottom: 18px;
+  }
+  .col-headers > div:nth-child(4) { text-align: left; }
+  .col-headers > div:nth-child(5) { text-align: left; }
+  .col-headers > div:nth-child(6) { text-align: right; }
+
+  /* ============ RECORD CARD ============ */
+  .records-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .record {
+    display: grid;
+    grid-template-columns: 64px 130px 1fr 200px 150px 130px;
+    gap: 24px;
+    align-items: center;
+    padding: 22px 28px;
+    background: var(--white);
+    border: 1px solid rgba(26, 61, 45, 0.06);
+    border-radius: 4px;
+    position: relative;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .35s;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    cursor: pointer;
+  }
+
+  .record::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--green);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform .4s cubic-bezier(.2,.7,.2,1);
+  }
+
+  .record.show {
+    animation: rise .6s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .record:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+    border-color: rgba(26, 61, 45, 0.18);
+  }
+  .record:hover::before {
+    transform: scaleY(1);
+  }
+
+  .record.is-first {
+    grid-template-columns: 78px 220px 1.15fr 220px 170px 140px;
+    gap: 30px;
+    padding: 34px 36px;
+    min-height: 168px;
+    background: linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%);
+    color: var(--cream);
+    border-color: var(--green);
+    box-shadow: 0 24px 64px -42px rgba(26, 61, 45, 0.9);
+  }
+  .record.is-first::before { background: var(--gold); transform: scaleY(1); width: 4px; }
+  .record.is-first:hover {
+    box-shadow: 0 30px 72px -42px rgba(26, 61, 45, 0.95);
+  }
+
+  /* Position number */
+  .pos {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--green);
+    letter-spacing: 0.02em;
+    position: relative;
+  }
+  .pos small {
+    font-size: 14px;
+    vertical-align: top;
+    color: rgba(26, 61, 45, 0.4);
+    margin-left: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0;
+  }
+  .record.is-first .pos { color: var(--gold); }
+  .record.is-first .pos small { color: rgba(230, 201, 138, 0.6); }
+  .record.is-first .pos {
+    font-size: 58px;
+  }
+
+  .gold-badge {
+    display: inline-block;
+    margin-top: 8px;
+    background: linear-gradient(135deg, var(--gold-2), var(--gold));
+    color: var(--green-deep);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.16em;
+    padding: 3px 6px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    box-shadow: 0 4px 10px -4px rgba(201, 165, 90, 0.6);
+    white-space: nowrap;
+  }
+
+  /* Car SVG */
+  .car-thumb {
+    width: 130px;
+    height: 78px;
+    display: grid;
+    place-items: center;
+    background: var(--cream);
+    border-radius: 2px;
+    position: relative;
+    transition: background .3s;
+  }
+  .record.is-first .car-thumb {
+    background: rgba(250, 238, 235, 0.08);
+    width: 220px;
+    height: 132px;
+    box-shadow: inset 0 0 0 1px rgba(250, 238, 235, 0.08);
+  }
+  .car-thumb svg,
+  .car-thumb img {
+    width: 100%;
+    height: 100%;
+  }
+  .car-thumb img {
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .car-thumb::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 12px; right: 12px;
+    height: 1px;
+    background: rgba(26, 61, 45, 0.12);
+  }
+  .record.is-first .car-thumb::after {
+    display: none;
+  }
+
+  /* Car info */
+  .car-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .car-make {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(26, 61, 45, 0.5);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .record.is-first .car-make {
+    color: rgba(250, 238, 235, 0.55);
+  }
+  .car-model {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.04em;
+    color: var(--green-deep);
+    line-height: 1;
+  }
+  .record.is-first .car-model { color: var(--cream); }
+  .record.is-first .car-model {
+    font-size: 40px;
+  }
+
+  /* Lap time */
+  .laptime {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--green);
+    text-align: left;
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+  }
+  .laptime .ms {
+    font-size: 24px;
+    color: rgba(26, 61, 45, 0.6);
+  }
+  .record.is-first .laptime { color: var(--cream); }
+  .record.is-first .laptime {
+    font-size: 56px;
+  }
+  .record.is-first .laptime .ms { color: rgba(250, 238, 235, 0.7); }
+
+  .laptime-delta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(26, 61, 45, 0.45);
+    margin-top: 2px;
+    letter-spacing: 0.02em;
+    text-align: left;
+  }
+  .record.is-first .laptime-delta { color: var(--gold-2); }
+
+  /* Driver + date */
+  .driver-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .driver-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green-deep);
+    letter-spacing: 0.01em;
+  }
+  .record.is-first .driver-name { color: var(--cream); }
+  .driver-date {
+    font-size: 11px;
+    color: rgba(26, 61, 45, 0.5);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+  .record.is-first .driver-date { color: rgba(250, 238, 235, 0.6); }
+
+  /* Mod badge */
+  .mod-cell {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .mod-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 7px 12px;
+    border-radius: 2px;
+    border: 1px solid;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .mod-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+  .mod-stock {
+    color: var(--green);
+    border-color: rgba(26, 61, 45, 0.25);
+    background: rgba(26, 61, 45, 0.04);
+  }
+  .mod-stock::before { background: var(--green); }
+  .mod-leve {
+    color: #8a6a1a;
+    border-color: rgba(201, 165, 90, 0.4);
+    background: rgba(201, 165, 90, 0.08);
+  }
+  .mod-leve::before { background: var(--gold); }
+  .mod-pesada {
+    color: #7a1f1f;
+    border-color: rgba(122, 31, 31, 0.3);
+    background: rgba(122, 31, 31, 0.05);
+  }
+  .mod-pesada::before { background: #7a1f1f; }
+
+  .record.is-first .mod-stock {
+    color: var(--cream);
+    background: rgba(250, 238, 235, 0.1);
+    border-color: rgba(250, 238, 235, 0.25);
+  }
+  .record.is-first .mod-stock::before { background: var(--cream); }
+  .record.is-first .mod-leve {
+    color: var(--gold-2);
+    background: rgba(230, 201, 138, 0.12);
+    border-color: rgba(230, 201, 138, 0.3);
+  }
+  .record.is-first .mod-pesada {
+    color: #f3c8c8;
+    background: rgba(243, 200, 200, 0.08);
+    border-color: rgba(243, 200, 200, 0.2);
+  }
+
+  /* ============ FOOTER STRIP ============ */
+  .footer-strip {
+    background: var(--green-deep);
+    color: rgba(250, 238, 235, 0.65);
+    padding: 36px 48px;
+    margin-top: 60px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-strip strong { color: var(--gold); font-weight: 500; }
+  .footer-strip a {
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(250, 238, 235, 0.35);
+    transition: color .2s, border-color .2s;
+  }
+  .footer-strip a:hover {
+    color: var(--gold-2);
+    border-color: var(--gold-2);
+  }
+  .footer-credit {
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    color: rgba(250, 238, 235, 0.82);
+  }
+  .footer-credit a {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  /* empty state */
+  .empty {
+    text-align: center;
+    padding: 64px 24px;
+    color: rgba(26, 61, 45, 0.5);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    background: var(--white);
+    border: 1px dashed rgba(26, 61, 45, 0.2);
+    border-radius: 4px;
+    display: none;
+  }
+  .empty.show { display: block; }
+
+  /* ============ CIRCUITO PAGE ============ */
+  .circ-tabs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    background: var(--white);
+    border: 1px solid rgba(26, 61, 45, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 36px;
+    box-shadow: 0 2px 12px -8px rgba(26, 61, 45, 0.15);
+  }
+  .circ-tab {
+    background: transparent;
+    border: 0;
+    border-right: 1px solid rgba(26, 61, 45, 0.08);
+    padding: 22px 18px;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    color: var(--green-deep);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    transition: background .25s, color .25s;
+  }
+  .circ-tab:last-child { border-right: 0; }
+  .circ-tab::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform .3s cubic-bezier(.2,.7,.2,1);
+  }
+  .circ-tab:hover { background: rgba(26, 61, 45, 0.03); }
+  .circ-tab.active {
+    background: var(--green);
+    color: var(--cream);
+  }
+  .circ-tab.active::after { transform: scaleX(1); }
+
+  .t-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: rgba(26, 61, 45, 0.45);
+  }
+  .circ-tab.active .t-num { color: var(--gold-2); }
+
+  .t-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .t-len {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(26, 61, 45, 0.55);
+    letter-spacing: 0.04em;
+  }
+  .circ-tab.active .t-len { color: rgba(250, 238, 235, 0.7); }
+
+  .circ-panel {
+    background: var(--white);
+    border: 1px solid rgba(26, 61, 45, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px -8px rgba(26, 61, 45, 0.12);
+    animation: fadeUp .5s cubic-bezier(.2,.7,.2,1);
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .circ-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid rgba(26, 61, 45, 0.08);
+  }
+
+  .circ-map {
+    background: var(--green);
+    padding: 36px;
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .circ-map::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(250, 238, 235, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(250, 238, 235, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+  .circ-map svg {
+    width: 100%;
+    height: auto;
+    max-height: 560px;
+    max-width: 640px;
+    position: relative;
+    z-index: 1;
+  }
+  .circ-photo {
+    width: 100%;
+    max-width: 680px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 18px 48px -28px rgba(0, 0, 0, 0.55);
+  }
+
+  .circ-info {
+    padding: 36px 40px;
+  }
+  .circ-info-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .circ-info h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 14px;
+    color: var(--green-deep);
+  }
+  .circ-info-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(26, 61, 45, 0.7);
+    margin-bottom: 28px;
+  }
+
+  .circ-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+  .circ-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(26, 61, 45, 0.2);
+    padding: 5px 10px;
+    border-radius: 2px;
+    color: var(--green);
+  }
+
+  .circ-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(26, 61, 45, 0.1);
+    border: 1px solid rgba(26, 61, 45, 0.1);
+  }
+  .circ-spec {
+    background: var(--white);
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 10px;
+    align-items: center;
+  }
+  .circ-spec-icon {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(26, 61, 45, 0.18);
+    border-radius: 50%;
+    color: var(--green);
+    display: grid;
+    place-items: center;
+  }
+  .circ-spec-icon svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+  }
+  .circ-spec-main {
+    min-width: 0;
+  }
+  .circ-spec-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(26, 61, 45, 0.5);
+    margin-bottom: 4px;
+  }
+  .circ-spec-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    line-height: 1;
+    color: var(--green-deep);
+    letter-spacing: 0.02em;
+  }
+  .circ-spec-value small {
+    font-size: 12px;
+    color: rgba(26, 61, 45, 0.55);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0;
+    margin-left: 4px;
+  }
+  .circ-record-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 10px 12px;
+    border-radius: 2px;
+    background: var(--green);
+    color: var(--cream);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .circ-record-link strong {
+    color: var(--gold-2);
+    font-weight: 600;
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .col-headers, .record {
+      grid-template-columns: 56px 110px 1fr 160px 130px 110px;
+      gap: 16px;
+      padding: 20px;
+    }
+    .record.is-first {
+      grid-template-columns: 64px 170px 1fr 180px 130px 110px;
+      gap: 20px;
+      padding: 28px;
+      min-height: 146px;
+    }
+    .col-headers { padding: 0 20px 14px; }
+    .car-thumb { width: 110px; height: 66px; }
+    .record.is-first .car-thumb { width: 170px; height: 104px; }
+    .car-model { font-size: 26px; }
+    .record.is-first .car-model { font-size: 34px; }
+    .laptime { font-size: 36px; }
+    .record.is-first .laptime { font-size: 46px; }
+    .pos { font-size: 36px; }
+    .record.is-first .pos { font-size: 48px; }
+  }
+  @media (max-width: 860px) {
+    .banner { padding: 24px 24px 0; }
+    .main { padding: 36px 24px 60px; }
+    .topnav { display: none; }
+    .col-headers { display: none; }
+    .record {
+      grid-template-columns: 56px 1fr;
+      grid-template-areas:
+        "pos car"
+        "thumb thumb"
+        "time time"
+        "driver mod";
+      gap: 16px;
+      padding: 20px;
+    }
+    .record .pos { grid-area: pos; }
+    .record .car-info { grid-area: car; }
+    .record .car-thumb { grid-area: thumb; width: 100%; height: 100px; }
+    .record .laptime-wrap { grid-area: time; }
+    .record .driver-block { grid-area: driver; }
+    .record .mod-cell { grid-area: mod; align-self: end; }
+    .record.is-first {
+      grid-template-columns: 64px 1fr;
+      grid-template-areas:
+        "pos car"
+        "thumb thumb"
+        "time time"
+        "driver mod";
+      gap: 18px;
+      padding: 26px 22px;
+      min-height: 0;
+    }
+    .record.is-first .car-thumb {
+      width: 100%;
+      height: 150px;
+    }
+    .record.is-first .car-model { font-size: 38px; }
+    .record.is-first .pos { font-size: 56px; }
+    .laptime { font-size: 56px; }
+    .record.is-first .laptime { font-size: 64px; }
+    .banner-stats { gap: 24px; }
+    .stat-num { font-size: 32px; }
+
+    .circ-tabs { grid-template-columns: 1fr; }
+    .circ-tab { border-right: 1px solid rgba(26, 61, 45, 0.08); border-bottom: 1px solid rgba(26, 61, 45, 0.08); }
+    .circ-hero { grid-template-columns: 1fr; }
+    .circ-map { min-height: 420px; padding: 24px; }
+    .circ-info { padding: 28px 24px; }
+    .circ-info h2 { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ BANNER ============ -->
+<header class="banner">
+  <div class="grid-bg"></div>
+  <div class="speed-lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+
+  <div class="topbar">
+    <div class="brand">
+      <img class="brand-logo" src="img/raceville-logo-transparent.png" alt="Raceville">
+    </div>
+    <nav class="topnav">
+      <a href="#" data-page="circuito" id="nav-circuito">Circuito</a>
+      <a href="#" class="active" data-page="recordes" id="nav-recordes">Recordes</a>
+    </nav>
+    <div class="meta-pill">
+      <span class="dot"></span>
+      <span>Atualizado · 28 ABR 2026</span>
+    </div>
+  </div>
+
+  <div class="banner-inner" id="banner-recordes">
+    <div class="banner-eyebrow">Hall of Fame · Temporada 2025/26</div>
+    <h1>Recordes<br />de <span class="accent">Pista</span></h1>
+
+    <div class="banner-sub">
+      <div class="banner-circuit">
+        <strong>Circuito Raceville — Brotas, Brasil</strong>
+        Circuito Principal — Raceville · 4,5 km.
+      </div>
+
+      <div class="banner-stats">
+        <div class="stat">
+          <div class="stat-num">35<small></small></div>
+          <div class="stat-label">Voltas registradas</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1:53<small>.30</small></div>
+          <div class="stat-label">Volta mais rápida</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4,5<small>km</small></div>
+          <div class="stat-label">Extensão oficial</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner-inner" id="banner-circuito" style="display:none;">
+    <div class="banner-eyebrow">O Circuito · Traçado Oficial</div>
+    <h1>Circuito<br /><span class="accent">Raceville</span></h1>
+
+    <div class="banner-sub">
+      <div class="banner-circuit">
+        <strong>Brotas, Brasil · Circuito permanente</strong>
+        Circuito Principal — Raceville com 4,5 km, 17 curvas, 12 m de largura média e recorde oficial de 1:53.30.
+      </div>
+
+      <div class="banner-stats">
+        <div class="stat">
+          <div class="stat-num">1<small>cfg</small></div>
+          <div class="stat-label">Circuito oficial</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4,5<small>km</small></div>
+          <div class="stat-label">Extensão</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">17<small>curvas</small></div>
+          <div class="stat-label">Traçado principal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="checker-strip"></div>
+
+<!-- ============ MAIN ============ -->
+<main class="main">
+
+  <section class="page" id="page-recordes">
+  <div class="col-headers">
+    <div>#</div>
+    <div>Veículo</div>
+    <div>Modelo</div>
+    <div>Tempo</div>
+    <div>Piloto</div>
+    <div>Pneus</div>
+  </div>
+
+  <div class="records-list" id="list"></div>
+
+  <div class="empty" id="empty">Nenhum recorde encontrado.</div>
+  </section>
+
+  <section class="page" id="page-circuito" style="display:none;">
+    <!-- Tabs for circuit configurations -->
+    <div class="circ-tabs" id="circ-tabs" role="tablist">
+      <button class="circ-tab active" data-circ="main">
+        <span class="t-num">01</span>
+        <span class="t-name">Circuito Principal — Raceville</span>
+        <span class="t-len">4,5 km</span>
+      </button>
+    </div>
+
+    <article class="circ-panel" id="circ-panel"></article>
+  </section>
+
+</main>
+
+<div class="footer-strip">
+  <span>RACEVILLE SPEED CLUB · <strong>Brotas SP</strong></span>
+  <span>© 2026 · Todos direitos reservados</span>
+  <span class="footer-credit">Desenvolvido por <a href="https://zeoxy.com.br" target="_blank" rel="noopener noreferrer">zeoxy</a></span>
+</div>
+
+<!-- ============ DATA & SVG ICONS ============ -->
+<script>
+const CARS = {
+  porsche_gt: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M46 70 Q55 42 100 38 Q145 42 154 70"/>
+        <path d="M62 48 Q100 32 138 48 L130 62 L70 62 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M26 95 Q32 74 52 66 L148 66 Q168 74 174 95 L168 102 L32 102 Z" fill="currentColor"/>
+        <ellipse cx="54" cy="82" rx="17" ry="8" fill="#faeeeb" stroke="#0c1d15" stroke-width="1.2"/>
+        <ellipse cx="146" cy="82" rx="17" ry="8" fill="#faeeeb" stroke="#0c1d15" stroke-width="1.2"/>
+        <path d="M78 84 Q100 92 122 84 L132 100 L68 100 Z" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M38 100 L162 100" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M22 70 L8 62 M178 70 L192 62" stroke="currentColor" stroke-width="5"/>
+      </g>
+    </svg>`,
+
+  porsche_turbo: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M42 72 Q54 40 100 37 Q146 40 158 72"/>
+        <path d="M60 48 Q100 34 140 48 L130 62 L70 62 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M24 96 Q30 74 50 66 L150 66 Q170 74 176 96 L170 102 L30 102 Z" fill="currentColor"/>
+        <path d="M42 82 Q58 76 74 82 Q60 90 42 88 Z" fill="#faeeeb" stroke="#0c1d15" stroke-width="1"/>
+        <path d="M158 82 Q142 76 126 82 Q140 90 158 88 Z" fill="#faeeeb" stroke="#0c1d15" stroke-width="1"/>
+        <rect x="76" y="86" width="48" height="12" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M26 100 L174 100" stroke="#faeeeb" stroke-width="1.2"/>
+        <path d="M20 70 L6 62 M180 70 L194 62" stroke="currentColor" stroke-width="5"/>
+      </g>
+    </svg>`,
+
+  bmw_m: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M54 38 L146 38"/>
+        <path d="M58 42 L72 62 L128 62 L142 42 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M26 96 L38 74 L64 60 L136 60 L162 74 L174 96 L174 102 L26 102 Z" fill="currentColor"/>
+        <path d="M78 76 L96 76 L94 101 L76 101 Z" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M122 76 L104 76 L106 101 L124 101 Z" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M84 78 L83 99 M90 78 L89 99 M110 78 L111 99 M116 78 L117 99" stroke="#faeeeb" stroke-width=".7"/>
+        <ellipse cx="50" cy="84" rx="15" ry="5" fill="#faeeeb" stroke-width="1"/>
+        <ellipse cx="150" cy="84" rx="15" ry="5" fill="#faeeeb" stroke-width="1"/>
+        <rect x="57" y="99" width="4" height="4" fill="#faeeeb"/>
+        <rect x="62" y="99" width="4" height="4" fill="#faeeeb"/>
+        <rect x="67" y="99" width="4" height="4" fill="#faeeeb"/>
+      </g>
+    </svg>`,
+
+  bmw_sedan: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M56 36 L144 36"/>
+        <path d="M60 40 L72 60 L128 60 L140 40 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M28 96 L40 74 L64 60 L136 60 L160 74 L172 96 L172 102 L28 102 Z" fill="currentColor"/>
+        <path d="M82 76 L98 76 L97 101 L80 101 Z" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M118 76 L102 76 L103 101 L120 101 Z" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <rect x="42" y="82" width="26" height="7" fill="#faeeeb" stroke-width="1"/>
+        <rect x="132" y="82" width="26" height="7" fill="#faeeeb" stroke-width="1"/>
+        <path d="M48 101 L152 101" stroke="#faeeeb" stroke-width="1"/>
+      </g>
+    </svg>`,
+
+  mercedes_gt: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M56 44 Q100 32 144 44"/>
+        <path d="M60 46 L72 61 L128 61 L140 46 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M18 96 L30 76 L66 60 L134 60 L170 76 L182 96 L182 102 L18 102 Z" fill="currentColor"/>
+        <path d="M58 78 L142 78 L132 101 L68 101 Z" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M66 82 L134 82 M70 88 L130 88 M74 94 L126 94" stroke="#faeeeb" stroke-width=".8"/>
+        <circle cx="100" cy="87" r="6" fill="none" stroke="#faeeeb" stroke-width="1.4"/>
+        <path d="M100 81 L100 87 L95 91 M100 87 L105 91" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M36 82 L64 78 L62 87 L38 90 Z M164 82 L136 78 L138 87 L162 90 Z" fill="#faeeeb" stroke-width="1"/>
+      </g>
+    </svg>`,
+
+  mercedes_sedan: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M58 38 L142 38"/>
+        <path d="M62 42 L74 61 L126 61 L138 42 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M28 96 L40 74 L64 60 L136 60 L160 74 L172 96 L172 102 L28 102 Z" fill="currentColor"/>
+        <rect x="64" y="78" width="72" height="20" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M66 84 L134 84 M66 90 L134 90" stroke="#faeeeb" stroke-width=".8"/>
+        <circle cx="100" cy="88" r="5" fill="none" stroke="#faeeeb" stroke-width="1.2"/>
+        <path d="M42 82 L66 80 L64 88 L42 90 Z M158 82 L134 80 L136 88 L158 90 Z" fill="#faeeeb" stroke-width="1"/>
+      </g>
+    </svg>`,
+
+  honda_civic: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M52 40 Q100 28 148 40"/>
+        <path d="M58 44 L72 62 L128 62 L142 44 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M24 96 L38 74 L62 60 L138 60 L162 74 L176 96 L176 102 L24 102 Z" fill="currentColor"/>
+        <path d="M38 82 L72 79 L74 88 L40 91 Z M162 82 L128 79 L126 88 L160 91 Z" fill="#faeeeb" stroke-width="1"/>
+        <rect x="78" y="84" width="44" height="12" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M92 89 L108 89" stroke="#faeeeb" stroke-width="1.4"/>
+        <path d="M30 64 L16 56 M170 64 L184 56" stroke="currentColor" stroke-width="4"/>
+      </g>
+    </svg>`,
+
+  vw_gol: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M62 33 L138 33"/>
+        <path d="M64 36 L76 62 L124 62 L136 36 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M34 96 L46 74 L66 60 L134 60 L154 74 L166 96 L166 101 L34 101 Z" fill="currentColor"/>
+        <rect x="44" y="82" width="25" height="7" fill="#faeeeb" stroke-width="1"/>
+        <rect x="131" y="82" width="25" height="7" fill="#faeeeb" stroke-width="1"/>
+        <rect x="70" y="82" width="60" height="8" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <circle cx="100" cy="86" r="4" fill="none" stroke="#faeeeb" stroke-width="1.2"/>
+      </g>
+    </svg>`,
+
+  suzuki_swift: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M60 38 Q100 30 140 38"/>
+        <path d="M62 42 L76 64 L124 64 L138 42 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M32 96 L42 76 L64 62 L136 62 L158 76 L168 96 L168 101 L32 101 Z" fill="currentColor"/>
+        <path d="M42 82 L68 80 L70 88 L44 91 Z M158 82 L132 80 L130 88 L156 91 Z" fill="#faeeeb" stroke-width="1"/>
+        <path d="M78 86 Q100 92 122 86 L128 99 L72 99 Z" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M88 82 L104 74 L96 86 L114 78" stroke="#faeeeb" stroke-width="1.5"/>
+      </g>
+    </svg>`,
+
+  renault_sandero: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M58 35 L142 35"/>
+        <path d="M62 39 L76 62 L124 62 L138 39 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M30 96 L42 74 L66 60 L134 60 L158 74 L170 96 L170 102 L30 102 Z" fill="currentColor"/>
+        <path d="M70 82 L130 82 L138 98 L62 98 Z" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M100 78 L108 88 L100 98 L92 88 Z" fill="#faeeeb" stroke="#0c1d15" stroke-width="1"/>
+        <path d="M40 82 L68 80 L66 89 L42 91 Z M160 82 L132 80 L134 89 L158 91 Z" fill="#faeeeb" stroke-width="1"/>
+      </g>
+    </svg>`,
+
+  chevrolet_celta: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M64 36 L136 36"/>
+        <path d="M66 40 L78 62 L122 62 L134 40 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M34 96 L44 76 L66 62 L134 62 L156 76 L166 96 L166 101 L34 101 Z" fill="currentColor"/>
+        <path d="M42 82 L70 80 L68 89 L44 91 Z M158 82 L130 80 L132 89 L156 91 Z" fill="#faeeeb" stroke-width="1"/>
+        <rect x="72" y="84" width="56" height="12" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <path d="M90 88 L98 88 L100 84 L102 88 L110 88 L106 92 L94 92 Z" fill="#faeeeb"/>
+      </g>
+    </svg>`,
+
+  smurf: `
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M56 44 Q100 28 144 44"/>
+        <path d="M62 47 L74 63 L126 63 L138 47 Z" fill="#faeeeb" stroke-width="1.6"/>
+        <path d="M22 96 L34 74 L64 60 L136 60 L166 74 L178 96 L178 102 L22 102 Z" fill="currentColor"/>
+        <path d="M36 82 L70 80 L68 89 L38 91 Z M164 82 L130 80 L132 89 L162 91 Z" fill="#faeeeb" stroke-width="1"/>
+        <path d="M66 86 L134 86 L142 100 L58 100 Z" fill="#0c1d15" stroke="#faeeeb" stroke-width="1"/>
+        <circle cx="100" cy="76" r="5" fill="#faeeeb"/>
+      </g>
+    </svg>`,
+};
+
+const RECORDS = [
+  { key:'porsche_gt', make:'Porsche', model:'GT3 RS MR 992.1', time:'1:53.30', driver:'Anônimo', mod:'Cup 2R', group:'Cup' },
+  { key:'bmw_m', make:'BMW', model:'M4 F82 Track Tool', time:'1:54.31', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
+  { key:'mercedes_gt', make:'Mercedes', model:'AMG GTR Clubsport', time:'1:54.90', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
+  { key:'porsche_turbo', make:'Porsche', model:'Turbo S 992.1', time:'1:56.42', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
+  { key:'bmw_m', make:'BMW', model:'M2 C. F87 Clubsport', time:'1:56.62', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
+  { key:'porsche_gt', make:'Porsche', model:'GT4 RS Clubsport', time:'1:56.68', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
+  { key:'porsche_gt', make:'Porsche', model:'992.1 GT3', time:'1:58.00', driver:'Anônimo', mod:'Cup 2R', group:'Cup' },
+  { key:'porsche_turbo', make:'Porsche', model:'Turbo S', time:'1:59.00', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
+  { key:'bmw_m', make:'BMW', model:'M2 G87 Clubsport', time:'1:59.03', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
+  { key:'porsche_turbo', make:'Porsche', model:'Turbo S 992.1', time:'1:59.14', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
+  { key:'porsche_gt', make:'Porsche', model:'GT3 RS 991.2', time:'1:59.68', driver:'Anônimo', mod:'Trofeo RS', group:'Outros' },
+  { key:'bmw_m', make:'BMW', model:'M2 C. F87 Clubsport', time:'2:00.00', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
+  { key:'bmw_m', make:'BMW', model:'M2 C. F87 Clubsport', time:'2:01.69', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
+  { key:'bmw_m', make:'BMW', model:'M2 C. F87 Clubsport', time:'2:02.37', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
+  { key:'bmw_m', make:'BMW', model:'M2 G87', time:'2:04.00', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
+  { key:'porsche_gt', make:'Porsche', model:'Cayman GT4', time:'2:04.70', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
+  { key:'smurf', make:'Smurf', model:'Smurf', time:'2:05.00', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'bmw_sedan', make:'BMW', model:'320i', time:'2:05.70', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'porsche_gt', make:'Porsche', model:'911 GTS', time:'2:06.20', driver:'Anônimo', mod:'Cup 2R', group:'Cup' },
+  { key:'porsche_gt', make:'Porsche', model:'992.1 GTS', time:'2:06.76', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
+  { key:'honda_civic', make:'Honda', model:'Civic Type R', time:'2:09.00', driver:'Anônimo', mod:'Champiro', group:'Outros' },
+  { key:'bmw_m', make:'BMW', model:'M4 F82 Clubsport', time:'2:09.00', driver:'Anônimo', mod:'Pirelli DHB', group:'Pirelli' },
+  { key:'bmw_m', make:'BMW', model:'M2 C. F87 Clubsport', time:'2:10.35', driver:'Anônimo', mod:'Pirelli DMF', group:'Pirelli' },
+  { key:'bmw_sedan', make:'BMW', model:'M3 E90 Clubsport', time:'2:10.39', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
+  { key:'bmw_sedan', make:'BMW', model:'M3 E92 Clubsport', time:'2:13.44', driver:'Anônimo', mod:'Kumho PS91', group:'Outros' },
+  { key:'honda_civic', make:'Honda', model:'Civic Type R', time:'2:14.00', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'porsche_gt', make:'Porsche', model:'911 Carrera', time:'2:14.64', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'vw_gol', make:'Volkswagen', model:'Gol', time:'2:20.00', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'vw_gol', make:'Volkswagen', model:'Gol', time:'2:20.00', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'suzuki_swift', make:'Suzuki', model:'Swift', time:'2:21.00', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'mercedes_sedan', make:'Mercedes', model:'C120', time:'2:22.00', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'renault_sandero', make:'Renault', model:'Sandero', time:'2:23.00', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'renault_sandero', make:'Renault', model:'Sandero RS', time:'2:24.00', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'chevrolet_celta', make:'Chevrolet', model:'Celta 1.4', time:'2:24.00', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'bmw_m', make:'BMW', model:'M4 F82 Track Tool', time:'2:39.14', driver:'Anônimo', mod:'Yokohama A005', group:'Outros' },
+];
+
+function timeMs(t) {
+  const [m, rest] = t.split(':');
+  const [s, ms] = rest.split('.');
+  return (+m)*60000 + (+s)*1000 + (+ms)*10;
+}
+const fastest = timeMs(RECORDS[0].time);
+
+function modClass(m) {
+  if (m.includes('Cup')) return 'mod-stock';
+  if (m.includes('Pirelli')) return 'mod-leve';
+  return 'mod-pesada';
+}
+
+function render(filter = 'all') {
+  const list = document.getElementById('list');
+  const empty = document.getElementById('empty');
+  list.innerHTML = '';
+  let visible = 0;
+  RECORDS.forEach((r, i) => {
+    if (filter !== 'all' && r.group !== filter) return;
+    visible++;
+    const isFirst = (i === 0 && filter === 'all');
+    const delta = i === 0 ? '★ Recorde absoluto' : `+${((timeMs(r.time) - fastest)/1000).toFixed(2)}s do líder`;
+    const [mins, rest] = r.time.split(':');
+    const [sec, ms] = rest.split('.');
+    const carVisual = i === 0
+      ? '<img src="img/gt3-rs-record.gif" alt="Porsche GT3 RS MR 992.1 em animação">'
+      : CARS[r.key];
+
+    const el = document.createElement('article');
+    el.className = 'record' + (isFirst ? ' is-first' : '');
+    if (i === 0) el.id = 'record-p1';
+    el.style.animationDelay = (visible * 70) + 'ms';
+    el.innerHTML = `
+      <div class="pos">
+        <div>${String(i+1).padStart(2,'0')}<small>°</small></div>
+        ${isFirst ? '<span class="gold-badge">P1</span>' : ''}
+      </div>
+      <div class="car-thumb" style="color: ${isFirst ? '#faeeeb' : '#1a3d2d'}">
+        ${carVisual}
+      </div>
+      <div class="car-info">
+        <div class="car-make">${r.make}</div>
+        <div class="car-model">${r.model}</div>
+      </div>
+      <div class="laptime-wrap">
+        <div class="laptime">${mins}:${sec}<span class="ms">.${ms}</span></div>
+        <div class="laptime-delta">${delta}</div>
+      </div>
+      <div class="driver-block">
+        <div class="driver-name">${r.driver}</div>
+      </div>
+      <div class="mod-cell">
+        <span class="mod-badge ${modClass(r.mod)}">${r.mod}</span>
+      </div>
+    `;
+    list.appendChild(el);
+  });
+  empty.classList.toggle('show', visible === 0);
+
+  requestAnimationFrame(() => {
+    list.querySelectorAll('.record').forEach(el => el.classList.add('show'));
+  });
+}
+
+render();
+
+// ============ CIRCUITO PAGE ============
+const CIRCUITS = {
+  main: {
+    name: 'Circuito Principal — Raceville',
+    eyebrow: 'Traçado oficial · Brotas, Brasil',
+    desc: 'Traçado permanente de 4,5 km exibido pela foto aérea real, com reta principal, complexo técnico à esquerda, chicanes e setor final sinuoso.',
+    tags: ['Permanente', 'Brotas, Brasil', 'Sentido horário', '17 curvas'],
+    specs: [
+      { icon: '<path d="M4 12h16"/><path d="M7 7l-3 5 3 5"/><path d="M17 7l3 5-3 5"/>', label: 'Extensão', value: '4,5', unit: 'km' },
+      { icon: '<path d="M5 18c7-12 7 0 14-12"/><path d="M5 6c7 12 7 0 14 12"/>', label: 'Curvas', value: '17', unit: 'curvas' },
+      { icon: '<path d="M4 7h16M4 17h16M7 4v16M17 4v16"/>', label: 'Largura média', value: '12', unit: 'm' },
+      { icon: '<path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.9z"/>', label: 'Recorde oficial', value: '1:53', unit: '.30' },
+      { icon: '<path d="M12 21s7-5.2 7-11a7 7 0 0 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2"/>', label: 'Localização', value: 'Brotas', unit: 'BR' },
+      { icon: '<path d="M4 20V6l8-3 8 3v14"/><path d="M9 20v-7h6v7"/>', label: 'Tipo', value: 'Permanente', unit: '' },
+    ],
+    map: 'main',
+  },
+};
+
+const MAPS = {
+  main: `<img class="circ-photo" src="img/autodromo-raceville-c-1024x1024.png" alt="Foto aérea do Circuito Principal Raceville">`,
+};
+
+function renderCircuit(key) {
+  const c = CIRCUITS[key];
+  const panel = document.getElementById('circ-panel');
+  panel.style.animation = 'none';
+  panel.offsetHeight;
+  panel.style.animation = '';
+
+  panel.innerHTML = `
+    <div class="circ-hero">
+      <div class="circ-map">${MAPS[c.map]}</div>
+      <div class="circ-info">
+        <div class="circ-info-eyebrow">${c.eyebrow}</div>
+        <h2>${c.name}</h2>
+        <p class="circ-info-desc">${c.desc}</p>
+        <div class="circ-tags">
+          ${c.tags.map(t => `<span class="circ-tag">${t}</span>`).join('')}
+        </div>
+        <div class="circ-specs">
+          ${c.specs.map(s => `
+            <div class="circ-spec">
+              <div class="circ-spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${s.icon}</svg></div>
+              <div class="circ-spec-main">
+                <div class="circ-spec-label">${s.label}</div>
+                <div class="circ-spec-value">${s.value}<small>${s.unit}</small></div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <a class="circ-record-link" href="#record-p1" data-record-link><strong>P1</strong> Ver recorde oficial</a>
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById('circ-tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('.circ-tab');
+  if (!btn) return;
+  document.querySelectorAll('.circ-tab').forEach(b => b.classList.toggle('active', b === btn));
+  renderCircuit(btn.dataset.circ);
+});
+
+document.getElementById('circ-panel').addEventListener('click', (e) => {
+  const link = e.target.closest('[data-record-link]');
+  if (!link) return;
+  e.preventDefault();
+  render('all');
+  showPage('recordes');
+  setTimeout(() => document.getElementById('record-p1')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 180);
+});
+
+renderCircuit('main');
+
+// ============ PAGE NAVIGATION ============
+function showPage(page) {
+  const isRecordes = page === 'recordes';
+  document.getElementById('page-recordes').style.display = isRecordes ? '' : 'none';
+  document.getElementById('page-circuito').style.display = isRecordes ? 'none' : '';
+  document.getElementById('banner-recordes').style.display = isRecordes ? '' : 'none';
+  document.getElementById('banner-circuito').style.display = isRecordes ? 'none' : '';
+  document.getElementById('nav-recordes').classList.toggle('active', isRecordes);
+  document.getElementById('nav-circuito').classList.toggle('active', !isRecordes);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('nav-recordes').addEventListener('click', (e) => { e.preventDefault(); showPage('recordes'); });
+document.getElementById('nav-circuito').addEventListener('click', (e) => { e.preventDefault(); showPage('circuito'); });
+</script>
+</body>
+</html>
