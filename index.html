@@ -347,7 +347,7 @@
   /* ============ TABLE HEADER ============ */
   .col-headers {
     display: grid;
-    grid-template-columns: 64px 130px 1fr 200px 150px 130px;
+    grid-template-columns: 64px 1fr 200px 150px 130px;
     gap: 24px;
     padding: 0 28px 14px;
     font-size: 10px;
@@ -358,9 +358,9 @@
     border-bottom: 1px solid rgba(26, 61, 45, 0.12);
     margin-bottom: 18px;
   }
+  .col-headers > div:nth-child(3) { text-align: left; }
   .col-headers > div:nth-child(4) { text-align: left; }
-  .col-headers > div:nth-child(5) { text-align: left; }
-  .col-headers > div:nth-child(6) { text-align: right; }
+  .col-headers > div:nth-child(5) { text-align: right; }
 
   /* ============ RECORD CARD ============ */
   .records-list {
@@ -371,7 +371,7 @@
 
   .record {
     display: grid;
-    grid-template-columns: 64px 130px 1fr 200px 150px 130px;
+    grid-template-columns: 64px 1fr 200px 150px 130px;
     gap: 24px;
     align-items: center;
     padding: 22px 28px;
@@ -411,6 +411,10 @@
   }
   .record:hover::before {
     transform: scaleY(1);
+  }
+
+  .record.has-photo {
+    grid-template-columns: 64px 130px 1fr 200px 150px 130px;
   }
 
   .record.is-first {
@@ -631,6 +635,12 @@
     background: rgba(122, 31, 31, 0.05);
   }
   .mod-pesada::before { background: #7a1f1f; }
+  .mod-neutro {
+    color: rgba(10, 25, 18, 0.35);
+    border-color: rgba(10, 25, 18, 0.12);
+    background: transparent;
+  }
+  .mod-neutro::before { display: none; }
 
   .record.is-first .mod-stock {
     color: var(--cream);
@@ -944,9 +954,12 @@
   /* Responsive */
   @media (max-width: 1100px) {
     .col-headers, .record {
-      grid-template-columns: 56px 110px 1fr 160px 130px 110px;
+      grid-template-columns: 56px 1fr 160px 130px 110px;
       gap: 16px;
       padding: 20px;
+    }
+    .record.has-photo {
+      grid-template-columns: 56px 110px 1fr 160px 130px 110px;
     }
     .record.is-first {
       grid-template-columns: 64px 170px 1fr 180px 130px 110px;
@@ -973,7 +986,6 @@
       grid-template-columns: 56px 1fr;
       grid-template-areas:
         "pos car"
-        "thumb thumb"
         "time time"
         "driver mod";
       gap: 16px;
@@ -981,10 +993,17 @@
     }
     .record .pos { grid-area: pos; }
     .record .car-info { grid-area: car; }
-    .record .car-thumb { grid-area: thumb; width: 100%; height: 100px; }
     .record .laptime-wrap { grid-area: time; }
     .record .driver-block { grid-area: driver; }
     .record .mod-cell { grid-area: mod; align-self: end; }
+    .record.has-photo {
+      grid-template-areas:
+        "pos car"
+        "thumb thumb"
+        "time time"
+        "driver mod";
+    }
+    .record.has-photo .car-thumb { grid-area: thumb; width: 100%; height: 100px; }
     .record.is-first {
       grid-template-columns: 64px 1fr;
       grid-template-areas:
@@ -1106,7 +1125,6 @@
   <section class="page" id="page-recordes">
   <div class="col-headers">
     <div>#</div>
-    <div>Veículo</div>
     <div>Modelo</div>
     <div>Tempo</div>
     <div>Piloto</div>
@@ -1321,53 +1339,87 @@ const CARS = {
 };
 
 const RECORDS = [
-  { key:'porsche_gt', make:'Porsche', model:'GT3 RS MR 992.1', time:'1:53.30', driver:'Anônimo', mod:'Cup 2R', group:'Cup' },
-  { key:'bmw_m', make:'BMW', model:'M4 F82 Track Tool', time:'1:54.31', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
-  { key:'mercedes_gt', make:'Mercedes', model:'AMG GTR Clubsport', time:'1:54.90', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
-  { key:'porsche_turbo', make:'Porsche', model:'Turbo S 992.1', time:'1:56.42', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
-  { key:'bmw_m', make:'BMW', model:'M2 C. F87 Clubsport', time:'1:56.62', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
-  { key:'porsche_gt', make:'Porsche', model:'GT4 RS Clubsport', time:'1:56.68', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
-  { key:'porsche_gt', make:'Porsche', model:'992.1 GT3', time:'1:58.00', driver:'Anônimo', mod:'Cup 2R', group:'Cup' },
-  { key:'porsche_turbo', make:'Porsche', model:'Turbo S', time:'1:59.00', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
-  { key:'bmw_m', make:'BMW', model:'M2 G87 Clubsport', time:'1:59.03', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
-  { key:'porsche_turbo', make:'Porsche', model:'Turbo S 992.1', time:'1:59.14', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
-  { key:'porsche_gt', make:'Porsche', model:'GT3 RS 991.2', time:'1:59.68', driver:'Anônimo', mod:'Trofeo RS', group:'Outros' },
-  { key:'bmw_m', make:'BMW', model:'M2 C. F87 Clubsport', time:'2:00.00', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
-  { key:'bmw_m', make:'BMW', model:'M2 C. F87 Clubsport', time:'2:01.69', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
-  { key:'bmw_m', make:'BMW', model:'M2 C. F87 Clubsport', time:'2:02.37', driver:'Anônimo', mod:'Pirelli DHF', group:'Pirelli' },
-  { key:'bmw_m', make:'BMW', model:'M2 G87', time:'2:04.00', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
-  { key:'porsche_gt', make:'Porsche', model:'Cayman GT4', time:'2:04.70', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
-  { key:'smurf', make:'Smurf', model:'Smurf', time:'2:05.00', driver:'Anônimo', mod:'—', group:'Outros' },
-  { key:'bmw_sedan', make:'BMW', model:'320i', time:'2:05.70', driver:'Anônimo', mod:'—', group:'Outros' },
-  { key:'porsche_gt', make:'Porsche', model:'911 GTS', time:'2:06.20', driver:'Anônimo', mod:'Cup 2R', group:'Cup' },
-  { key:'porsche_gt', make:'Porsche', model:'992.1 GTS', time:'2:06.76', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
-  { key:'honda_civic', make:'Honda', model:'Civic Type R', time:'2:09.00', driver:'Anônimo', mod:'Champiro', group:'Outros' },
-  { key:'bmw_m', make:'BMW', model:'M4 F82 Clubsport', time:'2:09.00', driver:'Anônimo', mod:'Pirelli DHB', group:'Pirelli' },
-  { key:'bmw_m', make:'BMW', model:'M2 C. F87 Clubsport', time:'2:10.35', driver:'Anônimo', mod:'Pirelli DMF', group:'Pirelli' },
-  { key:'bmw_sedan', make:'BMW', model:'M3 E90 Clubsport', time:'2:10.39', driver:'Anônimo', mod:'Cup 2', group:'Cup' },
-  { key:'bmw_sedan', make:'BMW', model:'M3 E92 Clubsport', time:'2:13.44', driver:'Anônimo', mod:'Kumho PS91', group:'Outros' },
-  { key:'honda_civic', make:'Honda', model:'Civic Type R', time:'2:14.00', driver:'Anônimo', mod:'—', group:'Outros' },
-  { key:'porsche_gt', make:'Porsche', model:'911 Carrera', time:'2:14.64', driver:'Anônimo', mod:'—', group:'Outros' },
-  { key:'chevrolet_onix', make:'Chevrolet', model:'Ônix 1.8', time:'2:19.75', driver:'Orlando Ferrari', mod:'—', group:'Outros', photo:'img/onix-orlando-ferrari.jpg' },
-  { key:'vw_gol', make:'Volkswagen', model:'Gol', time:'2:20.00', driver:'Anônimo', mod:'—', group:'Outros' },
-  { key:'vw_gol', make:'Volkswagen', model:'Gol', time:'2:20.00', driver:'Anônimo', mod:'—', group:'Outros' },
-  { key:'suzuki_swift', make:'Suzuki', model:'Swift', time:'2:21.00', driver:'Anônimo', mod:'—', group:'Outros' },
-  { key:'mercedes_sedan', make:'Mercedes', model:'C120', time:'2:22.00', driver:'Anônimo', mod:'—', group:'Outros' },
-  { key:'renault_sandero', make:'Renault', model:'Sandero', time:'2:23.00', driver:'Anônimo', mod:'—', group:'Outros' },
-  { key:'renault_sandero', make:'Renault', model:'Sandero RS', time:'2:24.00', driver:'Anônimo', mod:'—', group:'Outros' },
-  { key:'chevrolet_celta', make:'Chevrolet', model:'Celta 1.4', time:'2:24.00', driver:'Anônimo', mod:'—', group:'Outros' },
+  { key:'formula',         make:'Fórmula',    model:'F3',                          time:'1:44.90',  driver:'Otavio Fraige',            mod:'Pirelli DMA',      group:'Outros'  },
+  { key:'porsche_gt',      make:'Porsche',    model:'911 GT3 RS MR 992.1',         time:'1:53.30',  driver:'Nicolas Costa',            mod:'Cup 2R',           group:'Cup',    photo:'img/gt3-rs-record.gif' },
+  { key:'bmw_m',           make:'BMW',        model:'M4 F82',                      time:'1:54.31',  driver:'Bruno Baldussi',           mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'mercedes_gt',     make:'Mercedes',   model:'AMG GTR',                     time:'1:54.90',  driver:'Bruno Baldussi',           mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'prototipo',       make:'Protótipo',  model:'MCR',                         time:'1:56.40',  driver:'Otavio Fraige',            mod:'Pirelli DMA',      group:'Outros'  },
+  { key:'porsche_turbo',   make:'Porsche',    model:'911 Turbo S 992.1',           time:'1:56.42',  driver:'Alan Hellmeister',         mod:'Cup 2',            group:'Cup'     },
+  { key:'bmw_m',           make:'BMW',        model:'M2 Competition F87',          time:'1:56.627', driver:'Alessandro Silva',         mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'porsche_gt',      make:'Porsche',    model:'718 GT4 RS',                  time:'1:56.686', driver:'Juan Filipe',              mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'mercedes_gt',     make:'Mercedes',   model:'AMG GT4',                     time:'1:56.868', driver:'Melik Najm',               mod:'—',                group:'Outros'  },
+  { key:'porsche_gt',      make:'Porsche',    model:'911 GT3 992.1',               time:'1:58.436', driver:'Otavio Fraige',            mod:'Cup 2R',           group:'Cup'     },
+  { key:'porsche_gt',      make:'Porsche',    model:'911 GT3 RS 991.2',            time:'1:58.662', driver:'Victor Aielo',             mod:'Trofeo RS',        group:'Outros'  },
+  { key:'porsche_turbo',   make:'Porsche',    model:'911 Turbo S',                 time:'1:59.00',  driver:'Francisco Herrera',        mod:'Cup 2',            group:'Cup'     },
+  { key:'bmw_m',           make:'BMW',        model:'M2 G87',                      time:'1:59.039', driver:'Luiz Felipe Barreto NSS',  mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'porsche_turbo',   make:'Porsche',    model:'911 Turbo S 992.1',           time:'1:59.14',  driver:'Rodrigo Travessolo',       mod:'Cup 2',            group:'Cup'     },
+  { key:'bmw_m',           make:'BMW',        model:'M2 Competition F87',          time:'2:00.00',  driver:'Victor Aielo',             mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'bmw_m',           make:'BMW',        model:'M2 Competition F87',          time:'2:01.69',  driver:'Luiz Felipe Barreto NSS',  mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'bmw_m',           make:'BMW',        model:'M2 F87',                      time:'2:02.16',  driver:'Rodrigo Travessolo',       mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'bmw_m',           make:'BMW',        model:'M2 G87',                      time:'2:04.00',  driver:'Francisco Herrera',        mod:'Cup 2',            group:'Cup'     },
+  { key:'porsche_gt',      make:'Porsche',    model:'718 Cayman GT4',              time:'2:04.70',  driver:'Lucas Amorim',             mod:'Cup 2',            group:'Cup'     },
+  { key:'bmw_m',           make:'Mitsubishi', model:'Evo R',                       time:'2:05.00',  driver:'Thomas Cabrera',           mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'bmw_sedan',       make:'BMW',        model:'320i',                        time:'2:05.70',  driver:'Luciano Brito',            mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'porsche_gt',      make:'Porsche',    model:'911 GTS',                     time:'2:06.20',  driver:'Léo Franzo',               mod:'Cup 2R',           group:'Cup'     },
+  { key:'porsche_gt',      make:'Porsche',    model:'911 GTS 992.1',               time:'2:06.76',  driver:'Raul Fairbanks',           mod:'Cup 2',            group:'Cup'     },
+  { key:'bmw_sedan',       make:'BMW',        model:'M3 Competition',              time:'2:06.952', driver:'Gabriel Ruiz',             mod:'—',                group:'Outros'  },
+  { key:'porsche_gt',      make:'Porsche',    model:'911 GT3 RS 992.1',            time:'2:08.81',  driver:'Richard K.',               mod:'Cup 2R',           group:'Cup'     },
+  { key:'honda_civic',     make:'Honda',      model:'Civic Type R',                time:'2:09.00',  driver:'Francisco Herrera',        mod:'Champiro',         group:'Outros'  },
+  { key:'bmw_m',           make:'BMW',        model:'M4 F82',                      time:'2:09.000', driver:'Gabriel Rocha',            mod:'Pirelli DHB',      group:'Pirelli' },
+  { key:'bmw_m',           make:'Mitsubishi', model:'Evo R',                       time:'2:09.22',  driver:'Bruno Couto Gomes',        mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'porsche_turbo',   make:'Porsche',    model:'911 Turbo S',                 time:'2:09.311', driver:'Mauricio Serafim',         mod:'—',                group:'Outros'  },
+  { key:'mercedes_sedan',  make:'Mercedes',   model:'AMG A45',                     time:'2:09.372', driver:'Luiz / Cesar',             mod:'—',                group:'Outros'  },
+  { key:'mercedes_sedan',  make:'Mercedes',   model:'AMG A45 Cup 2024',            time:'2:09.70',  driver:'Léo Franzo',               mod:'—',                group:'Outros'  },
+  { key:'porsche_gt',      make:'Porsche',    model:'911 Carrera S Cabrio 997.1',  time:'2:10.12',  driver:'Thales Gasparro',          mod:'—',                group:'Outros'  },
+  { key:'bmw_m',           make:'BMW',        model:'M2 Competition F87',          time:'2:10.359', driver:'Bruno Delli Zotti',        mod:'Pirelli DMF',      group:'Pirelli' },
+  { key:'bmw_sedan',       make:'BMW',        model:'M3 E90 Clubsport',            time:'2:10.396', driver:'Caio Wagemaker',           mod:'Cup 2',            group:'Cup'     },
+  { key:'bmw_sedan',       make:'Audi',       model:'RS4',                         time:'2:11.53',  driver:'Bruno Couto Gomes',        mod:'Kumho PS71',       group:'Outros'  },
+  { key:'formula',         make:'Fórmula',    model:'Formula 1600',                time:'2:12.080', driver:'Bruno Baldussi',           mod:'—',                group:'Outros'  },
+  { key:'bmw_sedan',       make:'BMW',        model:'M3 E92 Clubsport',            time:'2:13.449', driver:'Bernardo Barreto',         mod:'Kumho PS91',       group:'Outros'  },
+  { key:'bmw_m',           make:'BMW',        model:'M4 CS G82',                   time:'2:13.661', driver:'Adilson de Souza',         mod:'—',                group:'Outros'  },
+  { key:'honda_civic',     make:'Honda',      model:'Civic Type R',                time:'2:14.00',  driver:'João Felipe Martin Meca',  mod:'—',                group:'Outros'  },
+  { key:'bmw_sedan',       make:'BMW',        model:'M3 E92',                      time:'2:14.082', driver:'Bruno Clement',            mod:'—',                group:'Outros'  },
+  { key:'porsche_gt',      make:'Porsche',    model:'911 Carrera',                 time:'2:14.64',  driver:'Henrique',                 mod:'—',                group:'Outros'  },
+  { key:'porsche_gt',      make:'Porsche',    model:'Cayman S 987.1',              time:'2:15.00',  driver:'Thales Gasparro',          mod:'—',                group:'Outros'  },
+  { key:'vw_gol',          make:'Volkswagen', model:'Golf GTI',                    time:'2:15.40',  driver:'Fernando Marinho',         mod:'Yokohama Neova',   group:'Outros'  },
+  { key:'vw_gol',          make:'Volkswagen', model:'Goljetta 2.5',               time:'2:16.00',  driver:'Thomas Cabrera',           mod:'—',                group:'Outros'  },
+  { key:'bmw_sedan',       make:'Audi',       model:'A3 2011',                     time:'2:16.20',  driver:'Léo Franzo',               mod:'—',                group:'Outros'  },
+  { key:'bmw_sedan',       make:'BMW',        model:'320i',                        time:'2:17.00',  driver:'Soraia Brito',             mod:'Pirelli DHF',      group:'Pirelli' },
+  { key:'chevrolet_onix',  make:'Chevrolet',  model:'Onix 1.8',                    time:'2:18.16',  driver:'Orlando Ferrari',          mod:'—',                group:'Outros', photo:'img/onix-orlando-ferrari.jpg' },
+  { key:'honda_civic',     make:'Honda',      model:'Civic Type R FL5',            time:'2:18.636', driver:'Joao Felipe Martin Meca',  mod:'—',                group:'Outros'  },
+  { key:'vw_gol',          make:'Volkswagen', model:'Voyage 2.0',                  time:'2:18.80',  driver:'Fernando Marinho',         mod:'—',                group:'Outros'  },
+  { key:'honda_civic',     make:'Honda',      model:'Civic Type R',                time:'2:18.91',  driver:'Daniel Stacciarini',       mod:'Michelin',         group:'Outros'  },
+  { key:'vw_gol',          make:'Volkswagen', model:'Goljetta 2.5',               time:'2:19.00',  driver:'Moisa',                    mod:'—',                group:'Outros'  },
+  { key:'bmw_sedan',       make:'BMW',        model:'323Ti',                       time:'2:19.34',  driver:'Thales Gasparro',          mod:'—',                group:'Outros'  },
+  { key:'vw_gol',          make:'Volkswagen', model:'Gol',                         time:'2:20.00',  driver:'Santiago',                 mod:'—',                group:'Outros'  },
+  { key:'vw_gol',          make:'Volkswagen', model:'Gol',                         time:'2:20.00',  driver:'Thomas Cabrera',           mod:'—',                group:'Outros'  },
+  { key:'suzuki_swift',    make:'Suzuki',     model:'Swift',                       time:'2:21.00',  driver:'André Puccia',             mod:'—',                group:'Outros'  },
+  { key:'renault_sandero', make:'Renault',    model:'Sandero RS',                  time:'2:21.268', driver:'Liliani Basques',          mod:'—',                group:'Outros'  },
+  { key:'mercedes_sedan',  make:'Mercedes',   model:'C120',                        time:'2:22.00',  driver:'André Puccia',             mod:'—',                group:'Outros'  },
+  { key:'bmw_m',           make:'BMW',        model:'M240',                        time:'2:22.241', driver:'Adilson de Souza',         mod:'—',                group:'Outros'  },
+  { key:'bmw_sedan',       make:'Mitsubishi', model:'Lancer 2.0 Aspirado MT',      time:'2:22.95',  driver:'Thomas Cabrera',           mod:'—',                group:'Outros'  },
+  { key:'renault_sandero', make:'Renault',    model:'Sandero RS',                  time:'2:23.00',  driver:'Francisco Herrera',        mod:'—',                group:'Outros'  },
+  { key:'renault_sandero', make:'Renault',    model:'Sandero RS',                  time:'2:23.720', driver:'Renato Maciel',            mod:'—',                group:'Outros'  },
+  { key:'chevrolet_celta', make:'Chevrolet',  model:'Celta 1.4',                   time:'2:24.00',  driver:'Rapha Fiore',              mod:'—',                group:'Outros'  },
+  { key:'renault_sandero', make:'Renault',    model:'Sandero RS',                  time:'2:24.00',  driver:'João Felipe Martin Meca',  mod:'—',                group:'Outros'  },
+  { key:'renault_sandero', make:'Renault',    model:'Sandero RS',                  time:'2:25.09',  driver:'Andre Bento',              mod:'—',                group:'Outros'  },
+  { key:'bmw_sedan',       make:'BMW',        model:'M3 E92',                      time:'2:30.093', driver:'Francisco Herrera',        mod:'—',                group:'Outros'  },
+  { key:'vw_gol',          make:'Volkswagen', model:'Fusca TSi',                   time:'2:30.77',  driver:'Henrique Antunes',         mod:'—',                group:'Outros'  },
+  { key:'chevrolet_celta', make:'Chevrolet',  model:'Vectra 2.0',                  time:'2:34.98',  driver:'Henrique Antunes',         mod:'—',                group:'Outros'  },
 ];
 
 function timeMs(t) {
   const [m, rest] = t.split(':');
   const [s, ms] = rest.split('.');
-  return (+m)*60000 + (+s)*1000 + (+ms)*10;
+  const msVal = ms ? (+ms) * Math.pow(10, 3 - ms.length) : 0;
+  return (+m)*60000 + (+s)*1000 + msVal;
 }
 const fastest = timeMs(RECORDS[0].time);
 
 function modClass(m) {
-  if (m.includes('Cup')) return 'mod-stock';
-  if (m.includes('Pirelli')) return 'mod-leve';
+  if (m === '—') return 'mod-neutro';
+  if (m.includes('Cup') || m.includes('Trofeo')) return 'mod-stock';
+  if (m.includes('Pirelli') || m.includes('Kumho') || m.includes('Yokohama') || m.includes('Champiro') || m.includes('Michelin')) return 'mod-leve';
   return 'mod-pesada';
 }
 
@@ -1383,14 +1435,8 @@ function render(filter = 'all') {
     const delta = i === 0 ? '★ Recorde absoluto' : `+${((timeMs(r.time) - fastest)/1000).toFixed(2)}s do líder`;
     const [mins, rest] = r.time.split(':');
     const [sec, ms] = rest.split('.');
-    const carVisual = i === 0
-      ? '<img src="img/gt3-rs-record.gif" alt="Porsche GT3 RS MR 992.1 em animação">'
-      : r.photo
-        ? `<img src="${r.photo}" alt="${r.make} ${r.model}" style="width:100%;height:100%;object-fit:cover;object-position:center center;border-radius:2px;">`
-        : CARS[r.key];
-
     const el = document.createElement('article');
-    el.className = 'record' + (isFirst ? ' is-first' : '');
+    el.className = 'record' + (isFirst ? ' is-first' : '') + (r.photo && !isFirst ? ' has-photo' : '');
     if (i === 0) el.id = 'record-p1';
     el.style.animationDelay = (visible * 70) + 'ms';
     el.innerHTML = `
@@ -1398,9 +1444,7 @@ function render(filter = 'all') {
         <div>${String(i+1).padStart(2,'0')}<small>°</small></div>
         ${isFirst ? '<span class="gold-badge">P1</span>' : ''}
       </div>
-      <div class="car-thumb" style="color: ${isFirst ? '#faeeeb' : '#1a3d2d'}">
-        ${carVisual}
-      </div>
+      ${r.photo ? `<div class="car-thumb"><img src="${r.photo}" alt="${r.model}" style="width:100%;height:100%;object-fit:cover;object-position:center center;border-radius:2px;"></div>` : ''}
       <div class="car-info">
         <div class="car-make">${r.make}</div>
         <div class="car-model">${r.model}</div>
